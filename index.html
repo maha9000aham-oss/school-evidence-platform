@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>منصة شواهد الأداء المدرسي | المرحلة المتوسطة</title>
+
+  <style>
+
+    :root{
+
+      --bg:#0b111d;
+
+      --bg2:#121b2d;
+
+      --panel:#111827cc;
+
+      --card:#162132d9;
+
+      --card-2:#0f172ad9;
+
+      --line:#2f405f;
+
+      --text:#f5f7fb;
+
+      --muted:#b5c0d4;
+
+      --white:#ffffff;
+
+      --black:#000000;
+
+      --gray:#9aa6b2;
+
+      --blue:#4ea1ff;
+
+      --blue-2:#7cc6ff;
+
+      --green:#41c983;
+
+      --purple:#9d7cff;
+
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+
+      --radius:24px;
+
+      --radius-sm:16px;
+
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{margin:0;padding:0}
+
+    body{
+
+      font-family: "Tahoma","Segoe UI","Arial",sans-serif;
+
+      color:var(--text);
+
+      background:
+
+        radial-gradient(circle at 12% 18%, rgba(78,161,255,.18), transparent 18%),
+
+        radial-gradient(circle at 84% 10%, rgba(157,124,255,.14), transparent 16%),
+
+        radial-gradient(circle at 20% 82%, rgba(65,201,131,.12), transparent 18%),
+
+        linear-gradient(180deg, #0a101a 0%, #101827 40%, #0b111d 100%);
+
+      min-height:100vh;
+
+      overflow-x:hidden;
+
+    }
+
+    body::before{
+
+      content:"";
+
+      position:fixed;
+
+      inset:0;
+
+      pointer-events:none;
+
+      background-image:
+
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+
+      background-size:28px 28px,28px 28px;
+
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.08));
+
+    }
+
+    .container{
+
+      width:min(1280px, calc(100% - 32px));
+
+      margin:0 auto;
+
+    }
+
+    .topbar{
+
+      position:sticky;
+
+      top:0;
+
+      z-index:50;
+
+      backdrop-filter:blur(14px);
+
+      background:rgba(8,13,24,.72);
+
+      border-bottom:1px solid rgba(255,255,255,.08);
+
+    }
+
+    .topbar-inner{
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:16px;
+
+      padding:18px 0;
+
+    }
+
+    .brand{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:14px;
+
+      min-width:0;
+
+    }
+
+    .brand-badge{
+
+      width:54px;
+
+      height:54px;
+
+      border-radius:18px;
+
+      display:grid;
+
+      place-items:center;
+
+      background:
+
+        linear-gradient(135deg, rgba(78,161,255,.2), rgba(157,124,255,.18));
+
+      border:1px solid rgba(255,255,255,.12);
+
+      box-shadow:var(--shadow);
+
+      font-size:26px;
+
+    }
+
+    .brand-text h1{
+
+      margin:0 0 4px;
+
+      font-size:1.35rem;
+
+      color:var(--white);
+
+      font-weight:800;
+
+      letter-spacing:.2px;
+
+    }
+
+    .brand-text p{
+
+      margin:0;
+
+      color:var(--muted);
+
+      font-size:.95rem;
+
+    }
+
+    .meta{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      justify-content:flex-end;
+
+      gap:10px;
+
+    }
+
+    .meta-chip{
+
+      padding:10px 14px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,.05);
+
+      border:1px solid rgba(255,255,255,.08);
+
+      color:#e7eefc;
+
+      font-size:.92rem;
+
+      white-space:nowrap;
+
+    }
+
+    .hero{
+
+      position:relative;
+
+      margin:26px auto 20px;
+
+      padding:34px 26px 26px;
+
+      border-radius:32px;
+
+      background:
+
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+
+        linear-gradient(135deg, rgba(17,24,39,.92), rgba(15,23,42,.88));
+
+      border:1px solid rgba(255,255,255,.1);
+
+      box-shadow:var(--shadow);
+
+      overflow:hidden;
+
+    }
+
+    .hero::before,
+
+    .hero::after{
+
+      content:"";
+
+      position:absolute;
+
+      inset:auto;
+
+      width:220px;
+
+      height:220px;
+
+      border-radius:50%;
+
+      filter:blur(10px);
+
+      opacity:.35;
+
+      pointer-events:none;
+
+    }
+
+    .hero::before{
+
+      top:-80px;
+
+      left:-40px;
+
+      background:radial-gradient(circle, rgba(78,161,255,.45), transparent 70%);
+
+    }
+
+    .hero::after{
+
+      bottom:-100px;
+
+      right:-30px;
+
+      background:radial-gradient(circle, rgba(157,124,255,.38), transparent 70%);
+
+    }
+
+    .hero-top{
+
+      display:flex;
+
+      align-items:flex-start;
+
+      justify-content:space-between;
+
+      gap:18px;
+
+      flex-wrap:wrap;
+
+      position:relative;
+
+      z-index:1;
+
+    }
+
+    .hero-title h2{
+
+      margin:0 0 10px;
+
+      font-size:2rem;
+
+      line-height:1.3;
+
+      font-weight:900;
+
+      color:var(--white);
+
+    }
+
+    .hero-title p{
+
+      margin:0;
+
+      color:#d4def0;
+
+      max-width:760px;
+
+      line-height:1.9;
+
+      font-size:1rem;
+
+    }
+
+    .hero-icons{
+
+      display:flex;
+
+      gap:10px;
+
+      flex-wrap:wrap;
+
+      justify-content:flex-end;
+
+    }
+
+    .hero-icons span{
+
+      width:50px;
+
+      height:50px;
+
+      display:grid;
+
+      place-items:center;
+
+      border-radius:16px;
+
+      background:rgba(255,255,255,.06);
+
+      border:1px solid rgba(255,255,255,.09);
+
+      font-size:1.3rem;
+
+    }
+
+    .stats{
+
+      margin-top:22px;
+
+      display:grid;
+
+      grid-template-columns:repeat(4, minmax(0,1fr));
+
+      gap:14px;
+
+      position:relative;
+
+      z-index:1;
+
+    }
+
+    .stat{
+
+      padding:18px 16px;
+
+      border-radius:22px;
+
+      background:rgba(255,255,255,.04);
+
+      border:1px solid rgba(255,255,255,.08);
+
+      min-height:98px;
+
+    }
+
+    .stat .label{
+
+      color:var(--muted);
+
+      font-size:.9rem;
+
+      margin-bottom:10px;
+
+    }
+
+    .stat .value{
+
+      font-size:1.6rem;
+
+      font-weight:900;
+
+      color:var(--white);
+
+    }
+
+    .section-head{
+
+      margin:28px 0 18px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:16px;
+
+      flex-wrap:wrap;
+
+    }
+
+    .section-head h3{
+
+      margin:0;
+
+      font-size:1.25rem;
+
+      font-weight:800;
+
+      color:var(--white);
+
+    }
+
+    .section-head p{
+
+      margin:0;
+
+      color:var(--muted);
+
+      font-size:.95rem;
+
+    }
+
+    .cards{
+
+      display:grid;
+
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+
+      gap:18px;
+
+      padding-bottom:36px;
+
+    }
+
+    .card{
+
+      position:relative;
+
+      background:
+
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+
+        linear-gradient(135deg, rgba(18,27,45,.95), rgba(13,20,34,.95));
+
+      border:1px solid rgba(255,255,255,.09);
+
+      border-radius:26px;
+
+      box-shadow:var(--shadow);
+
+      overflow:hidden;
+
+    }
+
+    .card::before{
+
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background:
+
+        radial-gradient(circle at 15% 15%, rgba(78,161,255,.09), transparent 24%),
+
+        radial-gradient(circle at 85% 12%, rgba(157,124,255,.08), transparent 22%),
+
+        radial-gradient(circle at 50% 100%, rgba(65,201,131,.08), transparent 20%);
+
+      pointer-events:none;
+
+    }
+
+    .card-inner{
+
+      position:relative;
+
+      z-index:1;
+
+      padding:18px;
+
+    }
+
+    .card-top{
+
+      display:flex;
+
+      align-items:flex-start;
+
+      gap:14px;
+
+      margin-bottom:14px;
+
+    }
+
+    .icon-wrap{
+
+      width:66px;
+
+      min-width:66px;
+
+      height:66px;
+
+      border-radius:20px;
+
+      display:grid;
+
+      place-items:center;
+
+      font-size:1.65rem;
+
+      color:var(--white);
+
+      background:linear-gradient(135deg, rgba(78,161,255,.18), rgba(157,124,255,.18));
+
+      border:1px solid rgba(255,255,255,.1);
+
+      box-shadow:0 10px 25px rgba(0,0,0,.22);
+
+    }
+
+    .card:nth-child(3n+2) .icon-wrap{
+
+      background:linear-gradient(135deg, rgba(65,201,131,.18), rgba(78,161,255,.18));
+
+    }
+
+    .card:nth-child(3n) .icon-wrap{
+
+      background:linear-gradient(135deg, rgba(157,124,255,.2), rgba(255,255,255,.08));
+
+    }
+
+    .title-wrap{
+
+      flex:1;
+
+      min-width:0;
+
+    }
+
+    .title-wrap h4{
+
+      margin:0 0 8px;
+
+      font-size:1.12rem;
+
+      line-height:1.8;
+
+      color:var(--white);
+
+      font-weight:800;
+
+    }
+
+    .title-wrap .tag{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      gap:8px;
+
+      padding:7px 12px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,.05);
+
+      border:1px solid rgba(255,255,255,.08);
+
+      color:#dce8ff;
+
+      font-size:.84rem;
+
+    }
+
+    .action-row{
+
+      display:flex;
+
+      gap:10px;
+
+      margin-top:12px;
+
+      flex-wrap:wrap;
+
+    }
+
+    .btn{
+
+      border:none;
+
+      cursor:pointer;
+
+      transition:.2s ease;
+
+      font-family:inherit;
+
+      font-weight:800;
+
+    }
+
+    .btn-primary{
+
+      padding:12px 18px;
+
+      border-radius:14px;
+
+      color:#fff;
+
+      background:linear-gradient(135deg, var(--blue), var(--purple));
+
+      box-shadow:0 10px 22px rgba(91,121,255,.28);
+
+    }
+
+    .btn-secondary{
+
+      padding:12px 16px;
+
+      border-radius:14px;
+
+      color:#eaf3ff;
+
+      background:rgba(255,255,255,.06);
+
+      border:1px solid rgba(255,255,255,.09);
+
+    }
+
+    .btn-danger{
+
+      padding:10px 14px;
+
+      border-radius:12px;
+
+      color:#fff;
+
+      background:linear-gradient(135deg, #d54c64, #9e2742);
+
+    }
+
+    .btn-success{
+
+      padding:12px 18px;
+
+      border-radius:14px;
+
+      color:#fff;
+
+      background:linear-gradient(135deg, var(--green), #2d9e67);
+
+      box-shadow:0 10px 22px rgba(65,201,131,.24);
+
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+
+    .btn:active{transform:translateY(0)}
+
+    .collapse{
+
+      margin-top:16px;
+
+      border-top:1px solid rgba(255,255,255,.08);
+
+      padding-top:16px;
+
+      display:none;
+
+    }
+
+    .card.open .collapse{display:block}
+
+    .form-grid{
+
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:12px;
+
+      margin-bottom:12px;
+
+    }
+
+    .field{
+
+      display:flex;
+
+      flex-direction:column;
+
+      gap:8px;
+
+    }
+
+    .field.full{grid-column:1 / -1}
+
+    .field label{
+
+      color:#e6eefc;
+
+      font-size:.92rem;
+
+      font-weight:700;
+
+    }
+
+    .field input,
+
+    .field textarea{
+
+      width:100%;
+
+      border:none;
+
+      outline:none;
+
+      border-radius:14px;
+
+      background:rgba(255,255,255,.06);
+
+      border:1px solid rgba(255,255,255,.1);
+
+      color:#fff;
+
+      font-family:inherit;
+
+      padding:14px 14px;
+
+      font-size:.95rem;
+
+    }
+
+    .field input[type="file"]{
+
+      padding:10px 12px;
+
+      background:rgba(255,255,255,.04);
+
+      cursor:pointer;
+
+    }
+
+    .field textarea{
+
+      min-height:110px;
+
+      resize:vertical;
+
+      line-height:1.8;
+
+    }
+
+    .mini-note{
+
+      color:var(--muted);
+
+      font-size:.84rem;
+
+      margin-top:4px;
+
+      line-height:1.8;
+
+    }
+
+    .evidence-list{
+
+      display:flex;
+
+      flex-direction:column;
+
+      gap:12px;
+
+      margin-top:14px;
+
+    }
+
+    .evidence-item{
+
+      padding:14px;
+
+      border-radius:18px;
+
+      background:
+
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+
+      border:1px solid rgba(255,255,255,.08);
+
+    }
+
+    .evidence-head{
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:flex-start;
+
+      gap:12px;
+
+      flex-wrap:wrap;
+
+      margin-bottom:10px;
+
+    }
+
+    .evidence-title{
+
+      font-size:1rem;
+
+      font-weight:800;
+
+      color:#fff;
+
+      margin:0;
+
+      line-height:1.7;
+
+    }
+
+    .evidence-date{
+
+      padding:7px 10px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,.05);
+
+      border:1px solid rgba(255,255,255,.08);
+
+      color:#dde8fb;
+
+      font-size:.82rem;
+
+      white-space:nowrap;
+
+    }
+
+    .evidence-desc{
+
+      margin:0 0 10px;
+
+      color:#d5dfef;
+
+      line-height:1.9;
+
+      font-size:.93rem;
+
+      white-space:pre-wrap;
+
+    }
+
+    .evidence-meta{
+
+      display:flex;
+
+      flex-wrap:wrap;
+
+      gap:10px;
+
+      margin-bottom:12px;
+
+    }
+
+    .pill{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      gap:8px;
+
+      padding:8px 12px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,.05);
+
+      border:1px solid rgba(255,255,255,.08);
+
+      color:#eaf2ff;
+
+      font-size:.84rem;
+
+      text-decoration:none;
+
+    }
+
+    .thumb{
+
+      margin-top:10px;
+
+      border-radius:16px;
+
+      overflow:hidden;
+
+      border:1px solid rgba(255,255,255,.08);
+
+      background:rgba(255,255,255,.03);
+
+      max-height:220px;
+
+    }
+
+    .thumb img{
+
+      display:block;
+
+      width:100%;
+
+      height:100%;
+
+      object-fit:cover;
+
+    }
+
+    .empty{
+
+      padding:16px;
+
+      border-radius:18px;
+
+      text-align:center;
+
+      color:var(--muted);
+
+      border:1px dashed rgba(255,255,255,.15);
+
+      background:rgba(255,255,255,.03);
+
+      line-height:1.9;
+
+    }
+
+    .footer{
+
+      padding:22px 0 36px;
+
+      color:#c4cfdd;
+
+      text-align:center;
+
+      line-height:1.9;
+
+    }
+
+    .footer strong{
+
+      color:#fff;
+
+    }
+
+    @media (max-width:1100px){
+
+      .cards{grid-template-columns:repeat(2, minmax(0,1fr))}
+
+      .stats{grid-template-columns:repeat(2, minmax(0,1fr))}
+
+    }
+
+    @media (max-width:700px){
+
+      .container{width:min(100% - 18px, 100%)}
+
+      .topbar-inner,.hero-top,.section-head{gap:12px}
+
+      .cards{grid-template-columns:1fr}
+
+      .stats{grid-template-columns:1fr}
+
+      .form-grid{grid-template-columns:1fr}
+
+      .hero{padding:24px 16px 18px}
+
+      .hero-title h2{font-size:1.55rem}
+
+      .brand-text h1{font-size:1.05rem}
+
+      .meta{justify-content:flex-start}
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="container topbar-inner">
+
+      <div class="brand">
+
+        <div class="brand-badge">🏛️</div>
+
+        <div class="brand-text">
+
+          <h1>منصة شواهد الأداء المدرسي</h1>
+
+          <p>المرحلة المتوسطة | إعداد: مهاء يوسف الشهراني</p>
+
+        </div>
+
+      </div>
+
+      <div class="meta">
+
+        <div class="meta-chip">اسم المعدة: مهاء يوسف الشهراني</div>
+
+        <div class="meta-chip">نوع المنصة: شواهد الأداء</div>
+
+        <div class="meta-chip">الحفظ: محلي داخل المتصفح</div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div class="hero-title">
+
+          <h2>المرحلة المتوسطة</h2>
+
+          <p>
+
+            منصة رسمية لتنظيم وإدارة شواهد الأداء المدرسي لكل بطاقة من بطاقات المرحلة المتوسطة،
+
+            مع إمكانية إضافة وصف للشاهد وإرفاق رابط أو تحميل ملف أو صورة داخل كل بطاقة بشكل مستقل.
+
+          </p>
+
+        </div>
+
+        <div class="hero-icons">
+
+          <span>📘</span>
+
+          <span>📊</span>
+
+          <span>🏆</span>
+
+          <span>🧭</span>
+
+          <span>🗂️</span>
+
+          <span>🎓</span>
+
+        </div>
+
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <div class="label">عدد البطاقات</div>
+
+          <div class="value" id="cardsCount">12</div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="label">إجمالي الشواهد</div>
+
+          <div class="value" id="evidenceCount">0</div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="label">البطاقات النشطة</div>
+
+          <div class="value" id="activeCardsCount">0</div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="label">المعدة</div>
+
+          <div class="value" style="font-size:1.1rem;">مهاء يوسف الشهراني</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section-head">
+
+      <div>
+
+        <h3>بطاقات الشواهد</h3>
+
+        <p>كل بطاقة تحتوي نموذجًا منسدلًا لإضافة الشواهد وعرضها وإدارتها.</p>
+
+      </div>
+
+    </section>
+
+    <section class="cards" id="cardsContainer"></section>
+
+    <section class="footer">
+
+      <strong>منصة شواهد الأداء المدرسي</strong><br>
+
+      تصميم رسمي لإدارة الشواهد التعليمية والتنظيمية للمرحلة المتوسطة<br>
+
+      إعداد: <strong>مهاء يوسف الشهراني</strong>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const cardsData = [
+
+      { id: "c1", icon: "📝", tag: "التقويم", title: "تقوم المدرسة أداء المتعلمين باستخدام أساليب وأدوات تقويم." },
+
+      { id: "c2", icon: "💻", tag: "التعلم الإلكتروني", title: "تفعل المدرسة التعلم الإلكتروني لتلبية احتياجات المتعلمين ودعمهم." },
+
+      { id: "c3", icon: "🎯", tag: "الدافعية", title: "تعزز المدرسة دافعية المتعلمين للتعلم والاستمتاع به." },
+
+      { id: "c4", icon: "📚", tag: "المناهج", title: "تدعم المدرسة تنفيذ المناهج لتحقيق نواتج التعلم المستهدفة." },
+
+      { id: "c5", icon: "🧩", tag: "الأنشطة التطبيقية", title: "توفر المدرسة أنشطة تعلم تطبيقية ترتبط بحياة المتعلمين." },
+
+      { id: "c6", icon: "🧠", tag: "التفكير العليا", title: "تنمي المدرسة مهارات التفكير العليا لدى المتعلمين." },
+
+      { id: "c7", icon: "🌐", tag: "المهارات الرقمية", title: "تنمي المدرسة المهارات الرقمية لدى المتعلمين." },
+
+      { id: "c8", icon: "📖", tag: "المهارات الأساسية", title: "تنمي المدرسة المهارات القرائية والعددية الأساسية لدى المتعلم." },
+
+      { id: "c9", icon: "➗", tag: "الرياضيات", title: "يحقق المتعلمون نتائج متقدمة في مجال الرياضيات وفقًا للاختبارات." },
+
+      { id: "c10", icon: "📗", tag: "القراءة", title: "يحقق المتعلمون نتائج متقدمة في مجال القراءة وفقًا للاختبارات." },
+
+      { id: "c11", icon: "🧪", tag: "العلوم", title: "يحقق المتعلمون نتائج متقدمة في مجال العلوم وفقًا للاختبارات." },
+
+      { id: "c12", icon: "⚖️", tag: "تكافؤ الفرص", title: "توفر المدرسة فرصًا متكافئة للتعلم تلبي احتياجات المتعلمين." }
+
+    ];
+
+    const STORAGE_KEY = "schoolEvidencePlatform_middleStage_v1";
+
+    function getStore(){
+
+      const raw = localStorage.getItem(STORAGE_KEY);
+
+      return raw ? JSON.parse(raw) : {};
+
+    }
+
+    function saveStore(store){
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+
+    }
+
+    function ensureCardStore(cardId){
+
+      const store = getStore();
+
+      if(!store[cardId]) store[cardId] = [];
+
+      saveStore(store);
+
+      return store;
+
+    }
+
+    function fileToDataURL(file){
+
+      return new Promise((resolve, reject) => {
+
+        if(!file) return resolve(null);
+
+        const reader = new FileReader();
+
+        reader.onload = e => resolve(e.target.result);
+
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
+
+    function shorten(text, len=42){
+
+      return text.length > len ? text.slice(0, len) + "..." : text;
+
+    }
+
+    function createCardHTML(card){
+
+      return `
+
+        <article class="card" id="card-${card.id}">
+
+          <div class="card-inner">
+
+            <div class="card-top">
+
+              <div class="icon-wrap">${card.icon}</div>
+
+              <div class="title-wrap">
+
+                <h4>${card.title}</h4>
+
+                <span class="tag">• ${card.tag}</span>
+
+              </div>
+
+            </div>
+
+            <div class="action-row">
+
+              <button class="btn btn-primary" onclick="toggleCard('${card.id}')">إضافة شاهد</button>
+
+              <button class="btn btn-secondary" onclick="toggleList('${card.id}')">عرض الشواهد</button>
+
+            </div>
+
+            <div class="collapse form-area" id="form-${card.id}">
+
+              <div class="form-grid">
+
+                <div class="field">
+
+                  <label for="title-${card.id}">عنوان الشاهد</label>
+
+                  <input id="title-${card.id}" type="text" placeholder="اكتبي عنوان الشاهد" />
+
+                </div>
+
+                <div class="field">
+
+                  <label for="date-${card.id}">تاريخ الشاهد</label>
+
+                  <input id="date-${card.id}" type="date" />
+
+                </div>
+
+                <div class="field full">
+
+                  <label for="desc-${card.id}">وصف الشاهد</label>
+
+                  <textarea id="desc-${card.id}" placeholder="اكتبي وصفًا مختصرًا للشاهد"></textarea>
+
+                </div>
+
+                <div class="field full">
+
+                  <label for="link-${card.id}">رابط الشاهد</label>
+
+                  <input id="link-${card.id}" type="url" placeholder="https://example.com" />
+
+                </div>
+
+                <div class="field">
+
+                  <label for="file-${card.id}">تحميل ملف أو صورة</label>
+
+                  <input id="file-${card.id}" type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip" />
+
+                  <div class="mini-note">يمكن رفع صورة أو ملف، وسيتم حفظه محليًا داخل المتصفح.</div>
+
+                </div>
+
+                <div class="field">
+
+                  <label>تنبيه</label>
+
+                  <div class="mini-note">
+
+                    يمكنكِ إدخال رابط فقط، أو ملف فقط، أو الاثنين معًا داخل نفس الشاهد.
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="action-row">
+
+                <button class="btn btn-success" onclick="addEvidence('${card.id}')">حفظ الشاهد</button>
+
+                <button class="btn btn-secondary" onclick="clearForm('${card.id}')">مسح الحقول</button>
+
+              </div>
+
+            </div>
+
+            <div class="collapse evidence-area" id="list-${card.id}">
+
+              <div class="evidence-list" id="evidence-${card.id}"></div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+    function renderCards(){
+
+      const container = document.getElementById("cardsContainer");
+
+      container.innerHTML = cardsData.map(createCardHTML).join("");
+
+      cardsData.forEach(card => {
+
+        ensureCardStore(card.id);
+
+        renderEvidenceList(card.id);
+
+      });
+
+      updateStats();
+
+    }
+
+    function toggleCard(cardId){
+
+      const card = document.getElementById(`card-${cardId}`);
+
+      const form = document.getElementById(`form-${cardId}`);
+
+      const list = document.getElementById(`list-${cardId}`);
+
+      card.classList.add("open");
+
+      form.style.display = form.style.display === "block" ? "none" : "block";
+
+      if(form.style.display === "block"){ list.style.display = "none"; }
+
+    }
+
+    function toggleList(cardId){
+
+      const card = document.getElementById(`card-${cardId}`);
+
+      const form = document.getElementById(`form-${cardId}`);
+
+      const list = document.getElementById(`list-${cardId}`);
+
+      card.classList.add("open");
+
+      list.style.display = list.style.display === "block" ? "none" : "block";
+
+      if(list.style.display === "block"){ form.style.display = "none"; }
+
+    }
+
+    function clearForm(cardId){
+
+      document.getElementById(`title-${cardId}`).value = "";
+
+      document.getElementById(`date-${cardId}`).value = "";
+
+      document.getElementById(`desc-${cardId}`).value = "";
+
+      document.getElementById(`link-${cardId}`).value = "";
+
+      document.getElementById(`file-${cardId}`).value = "";
+
+    }
+
+    async function addEvidence(cardId){
+
+      const title = document.getElementById(`title-${cardId}`).value.trim();
+
+      const date = document.getElementById(`date-${cardId}`).value;
+
+      const desc = document.getElementById(`desc-${cardId}`).value.trim();
+
+      const link = document.getElementById(`link-${cardId}`).value.trim();
+
+      const fileInput = document.getElementById(`file-${cardId}`);
+
+      const file = fileInput.files[0];
+
+      if(!title){
+
+        alert("أدخلي عنوان الشاهد أولًا.");
+
+        return;
+
+      }
+
+      if(!desc && !link && !file){
+
+        alert("أضيفي وصفًا أو رابطًا أو ملفًا قبل الحفظ.");
+
+        return;
+
+      }
+
+      let fileData = null;
+
+      let fileName = "";
+
+      let fileType = "";
+
+      if(file){
+
+        fileData = await fileToDataURL(file);
+
+        fileName = file.name;
+
+        fileType = file.type || "application/octet-stream";
+
+      }
+
+      const store = getStore();
+
+      if(!store[cardId]) store[cardId] = [];
+
+      const evidence = {
+
+        id: Date.now().toString(),
+
+        title,
+
+        date: date || "بدون تاريخ",
+
+        desc,
+
+        link,
+
+        fileData,
+
+        fileName,
+
+        fileType,
+
+        createdAt: new Date().toISOString()
+
+      };
+
+      store[cardId].unshift(evidence);
+
+      saveStore(store);
+
+      renderEvidenceList(cardId);
+
+      clearForm(cardId);
+
+      document.getElementById(`list-${cardId}`).style.display = "block";
+
+      document.getElementById(`form-${cardId}`).style.display = "none";
+
+      updateStats();
+
+    }
+
+    function renderEvidenceList(cardId){
+
+      const store = getStore();
+
+      const items = store[cardId] || [];
+
+      const container = document.getElementById(`evidence-${cardId}`);
+
+      if(!container) return;
+
+      if(items.length === 0){
+
+        container.innerHTML = `<div class="empty">لا توجد شواهد مضافة لهذه البطاقة حتى الآن.</div>`;
+
+        return;
+
+      }
+
+      container.innerHTML = items.map(item => {
+
+        const isImage = item.fileType && item.fileType.startsWith("image/");
+
+        const fileBadge = item.fileData
+
+          ? `<a class="pill" href="${item.fileData}" download="${item.fileName || 'file'}">📎 ${shorten(item.fileName || "ملف مرفق")}</a>`
+
+          : "";
+
+        const linkBadge = item.link
+
+          ? `<a class="pill" href="${item.link}" target="_blank" rel="noopener noreferrer">🔗 فتح الرابط</a>`
+
+          : "";
+
+        const imagePreview = isImage
+
+          ? `<div class="thumb"><img src="${item.fileData}" alt="${item.title}"></div>`
+
+          : "";
+
+        return `
+
+          <div class="evidence-item">
+
+            <div class="evidence-head">
+
+              <h5 class="evidence-title">${item.title}</h5>
+
+              <div class="evidence-date">${item.date}</div>
+
+            </div>
+
+            ${item.desc ? `<p class="evidence-desc">${item.desc}</p>` : ""}
+
+            <div class="evidence-meta">
+
+              ${linkBadge}
+
+              ${fileBadge}
+
+            </div>
+
+            ${imagePreview}
+
+            <div class="action-row" style="margin-top:12px;">
+
+              <button class="btn btn-danger" onclick="deleteEvidence('${cardId}','${item.id}')">حذف</button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+    }
+
+    function deleteEvidence(cardId, evidenceId){
+
+      const store = getStore();
+
+      store[cardId] = (store[cardId] || []).filter(item => item.id !== evidenceId);
+
+      saveStore(store);
+
+      renderEvidenceList(cardId);
+
+      updateStats();
+
+    }
+
+    function updateStats(){
+
+      const store = getStore();
+
+      let totalEvidence = 0;
+
+      let activeCards = 0;
+
+      cardsData.forEach(card => {
+
+        const count = (store[card.id] || []).length;
+
+        totalEvidence += count;
+
+        if(count > 0) activeCards++;
+
+      });
+
+      document.getElementById("evidenceCount").textContent = totalEvidence;
+
+      document.getElementById("activeCardsCount").textContent = activeCards;
+
+    }
+
+    renderCards();
+
+  </script>
+
+</body>
+
+</html>
